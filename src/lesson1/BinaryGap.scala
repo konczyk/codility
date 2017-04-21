@@ -2,6 +2,7 @@ package lesson1
 
 object BinaryGap {
   def solution(n: Int): Int = {
+
     def go(n: Int, currGap: Option[Int], maxGap: Int): Int = {
       if (n == 0) maxGap
       else (n & 1, currGap) match {
@@ -11,6 +12,7 @@ object BinaryGap {
         case _ => go(n/2, currGap, maxGap)
       }
     }
+
     go(n, None, 0)
   }
 }
