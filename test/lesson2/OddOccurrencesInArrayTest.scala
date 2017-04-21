@@ -32,9 +32,7 @@ class OddOccurrencesInArrayTest extends FunSuite with Checkers {
 
     val numGenOdd = numGen suchThat (_ != Odd)
     val inputGen = Gen.containerOf[Array,Int](numGenOdd).suchThat(isValid).map(toInput)
-    check(forAllNoShrink(inputGen)(a => {
-      solution(a) === Odd
-    }))
+    check(forAllNoShrink(inputGen)(solution(_) === Odd))
   }
 
   test("codility example passes") {
