@@ -2,13 +2,13 @@ package lesson1
 
 import org.junit.runner.RunWith
 import org.scalacheck.Gen
-import org.scalacheck.Prop._
-import org.scalatest.FunSuite
 import org.scalatest.junit.JUnitRunner
-import org.scalatest.prop.Checkers
+import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatest.{FunSuite, Matchers}
 
 @RunWith(classOf[JUnitRunner])
-class BinaryGapTest extends FunSuite with Checkers {
+class BinaryGapTest extends FunSuite
+  with GeneratorDrivenPropertyChecks with Matchers {
 
   import lesson1.BinaryGap._
 
@@ -22,12 +22,12 @@ class BinaryGapTest extends FunSuite with Checkers {
 
   test("number 2^n have no binary gap") {
     val powersGen = Gen.chooseNum(0,31).map(pow2)
-    check(forAll(powersGen)(solution(_) === 0))
+    forAll(powersGen)(solution(_) should be (0))
   }
 
   test("numbers with consecutive ones in binary have no binary gap") {
     val onesGen = Gen.chooseNum(2,31).map(ones)
-    check(forAll(onesGen)(solution(_) === 0))
+    forAll(onesGen)(solution(_) should be (0))
   }
 
   test("single binary gap with prefix 1 is found") {
