@@ -18,22 +18,21 @@ class OddOccurrencesInArrayTest extends FunSuite
   private val MaxLen = 100000
   private val numGen = Gen.chooseNum(MinEl, MaxEl)
 
-  private def inputConstraint(xs: Array[Int]) =
-    xs.length % 2 > 0 && xs.length < MaxLen/2 && xs.length >= MinLen
-
   test("one element array returns its only element") {
-    val singlesGen = Gen.containerOfN[Array,Int](1, numGen).suchThat(_.nonEmpty)
+    val singlesGen = Gen.containerOfN[Array,Int](1, numGen)
     forAll(singlesGen)(a => solution(a) should equal (a(0)))
   }
 
   test("array with at least one pair returns un-paired element") {
-    val Odd = 5
+    val Unpaired = 5
     def toInput(a: Array[Int]) =
-      scala.util.Random.shuffle(a.toSeq ++ a :+ Odd).toArray
+      scala.util.Random.shuffle(a.toSeq ++ a :+ Unpaired).toArray
 
-    val numGenOdd = numGen suchThat (_ != Odd)
-    val inputGen = Gen.containerOf[Array,Int](numGenOdd).suchThat(inputConstraint).map(toInput)
-    forAll(inputGen, minSuccessful(500))(solution(_) should equal (Odd))
+    val pairedNumGen = numGen suchThat (_ != Unpaired)
+    val inputGen = Gen.chooseNum(MinLen, MaxLen/2) suchThat(_ % 2 != 0) flatMap {
+      Gen.containerOfN[Array,Int](_, pairedNumGen).map(toInput)
+    }
+    forAll(inputGen, minSuccessful(500))(solution(_) should equal (Unpaired))
   }
 
   test("codility example passes") {
