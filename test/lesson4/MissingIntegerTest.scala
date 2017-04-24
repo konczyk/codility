@@ -28,13 +28,12 @@ class MissingIntegerTest extends FunSuite
     val inputGen = Gen.chooseNum(MinLen, MaxLen) flatMap {
       Gen.containerOfN[Array,Int](_, Gen.chooseNum(MinEl, MaxEl))
     }
-    forAll(inputGen, minSuccessful(100)){
-      a =>
-        whenever(a.max > 0) {
-          val items = a.filter(_ > 0).distinct.sorted.zipWithIndex
-          val expected = items.find(e => e._1 > e._2+1).map(_._2+1).getOrElse(a.max+1)
-          solution(a) should equal(expected)
-        }
+    forAll(inputGen, minSuccessful(100)) { a =>
+      whenever(a.max > 0) {
+        val items = a.filter(_ > 0).distinct.sorted.zipWithIndex
+        val expected = items.find(e => e._1 > e._2+1).map(_._2+1).getOrElse(a.max+1)
+        solution(a) should equal(expected)
+      }
     }
   }
 
