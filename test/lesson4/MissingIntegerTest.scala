@@ -32,7 +32,7 @@ class MissingIntegerTest extends FunSuite
       whenever(a.max > 0) {
         val items = a.filter(_ > 0).distinct.sorted.zipWithIndex
         val expected = items.find(e => e._1 > e._2+1).map(_._2+1).getOrElse(a.max+1)
-        solution(a) should equal(expected)
+        solution(a) should equal (expected)
       }
     }
   }

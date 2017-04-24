@@ -16,13 +16,14 @@ class FrogRiverOneTest extends FunSuite
   private val MaxLen = 100000
 
   test("missing leaf from a permutation never lets the frog jump to the outermost bank") {
-    import scala.util.Random
+    import scala.util.Random.shuffle
     val inputGen = Gen.choose(MinLen, MaxLen).map { n =>
-      val missing = Random.nextInt(n)+1
-      (1 to n).filter(_ != missing).toArray
+      val leaves = shuffle(1 to n).toArray
+      leaves(0) = leaves.last
+      leaves
     }
 
-    forAll(inputGen, minSuccessful(100))(a => solution(a.length, a) === -1)
+    forAll(inputGen, minSuccessful(100))(a => solution(a.length, a) should equal (-1))
   }
 
   test("bank too far away never lets the frog jump") {
@@ -31,7 +32,7 @@ class FrogRiverOneTest extends FunSuite
       Random.shuffle((1 to n/2) ++ (1 to n/2)).toArray
     }
 
-    forAll(inputGen, minSuccessful(100))(a => solution(a.length/2+1, a) === -1)
+    forAll(inputGen, minSuccessful(100))(a => solution(a.length/2+1, a) should equal (-1))
   }
 
   test("river of width 1 with a fallen leaf lets the frog jump at time 0") {

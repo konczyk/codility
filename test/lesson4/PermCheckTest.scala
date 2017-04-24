@@ -32,7 +32,7 @@ class PermCheckTest extends FunSuite
     import scala.util.Random.shuffle
     val inputGen = Gen.chooseNum(MinLen, MaxLen).map(n => shuffle(1 to n).toArray)
 
-    forAll(inputGen, minSuccessful(100))(solution(_) === 1)
+    forAll(inputGen, minSuccessful(100))(solution(_) should equal (1))
   }
 
   test("codility example passes") {
