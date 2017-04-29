@@ -17,20 +17,20 @@ class BracketsTest extends FunSuite
 
   private val brackets = List('[', '{', '(', ')','}', ']')
 
-  test("strings starting with a closing brace always produce 0") {
+  test("strings starting with a closing bracket always produce 0") {
     val stringsGen = for {
       len <- Gen.chooseNum(MinLen, MaxLen-1)
       start <- Gen.oneOf(brackets.takeRight(3))
-      gen <- Gen.buildableOfN[String, Char](len+1, Gen.oneOf(brackets)).map(start + _)
+      gen <- Gen.buildableOfN[String, Char](len, Gen.oneOf(brackets)).map(start + _)
     } yield gen
     forAll(stringsGen)(solution(_) should equal (0))
   }
 
-  test("strings ending with a closing brace always produce 0") {
+  test("strings ending with an opening bracket always produce 0") {
     val stringsGen = for {
       len <- Gen.chooseNum(MinLen, MaxLen-1)
       end <- Gen.oneOf(brackets.take(3))
-      gen <- Gen.buildableOfN[String, Char](len+1, Gen.oneOf(brackets)).map(_ + end)
+      gen <- Gen.buildableOfN[String, Char](len, Gen.oneOf(brackets)).map(_ + end)
     } yield gen
     forAll(stringsGen)(solution(_) should equal (0))
   }
