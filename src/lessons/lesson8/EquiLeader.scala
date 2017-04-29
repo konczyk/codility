@@ -4,12 +4,11 @@ object EquiLeader {
   def solution(a: Array[Int]): Int = {
 
     def findLeader(i: Int, leader: Option[Int], stack: Int): Option[Int] =
-      if (i == a.length) leader match {
-        case Some(num) if a.count(_ == num) > a.length/2 => leader
-        case _ => None
-      } else (leader, stack) match {
-        case (None, _) => findLeader(i+1, Some(a(i)), stack+1)
-        case (Some(num), len) if num != a(i) =>
+      (leader, a.lift(i), stack) match {
+        case (Some(num), None, _) if a.count(_ == num) > a.length/2 => leader
+        case (_, None, _ ) => None
+        case (None, _, _) => findLeader(i+1, Some(a(i)), stack+1)
+        case (Some(num), _, len) if num != a(i) =>
           if (len > 1) findLeader(i+1, leader, stack-1)
           else findLeader(i+1, None, 0)
         case _ => findLeader(i+1, leader, stack+1)
