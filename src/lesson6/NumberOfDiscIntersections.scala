@@ -9,7 +9,7 @@ object NumberOfDiscIntersections {
       if (i == heads.length || heads(i) > bound) acc
       else sweep(i+1, bound, acc+1)
 
-    def go(t: Int, h: Int, prev: Int, acc: Long): Int = {
+    def go(t: Int, h: Int, prev: Int, acc: Long): Int =
       if (acc > 10000000) -1
       else if (t == tails.length) acc.toInt
       else {
@@ -17,7 +17,6 @@ object NumberOfDiscIntersections {
         val change = prev + discs - 1
         go(t+1, h+discs, change, acc+change)
       }
-    }
 
     go(0, 0, 0, 0)
   }
