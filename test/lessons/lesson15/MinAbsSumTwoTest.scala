@@ -1,10 +1,7 @@
 package lessons.lesson15
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class MinAbsSumTwoTest extends FunSuite {
 
   import MinAbsSumOfTwo._

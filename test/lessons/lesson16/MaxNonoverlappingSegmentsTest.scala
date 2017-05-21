@@ -1,10 +1,7 @@
 package lessons.lesson16
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class MaxNonoverlappingSegmentsTest extends FunSuite {
 
   import MaxNonoverlappingSegments._

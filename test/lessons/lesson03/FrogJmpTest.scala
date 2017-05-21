@@ -1,12 +1,9 @@
 package lessons.lesson03
 
-import org.junit.runner.RunWith
 import org.scalacheck.Gen
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{FunSuite, Matchers}
 
-@RunWith(classOf[JUnitRunner])
 class FrogJmpTest extends FunSuite
   with GeneratorDrivenPropertyChecks with Matchers {
 

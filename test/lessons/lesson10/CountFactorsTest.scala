@@ -1,10 +1,7 @@
 package lessons.lesson10
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class CountFactorsTest extends FunSuite {
 
   import CountFactors._

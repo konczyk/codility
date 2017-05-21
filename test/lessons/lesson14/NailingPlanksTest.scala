@@ -1,10 +1,7 @@
 package lessons.lesson14
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class NailingPlanksTest extends FunSuite {
 
   import NailingPlanks._

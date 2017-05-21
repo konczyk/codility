@@ -1,10 +1,7 @@
 package lessons.lesson14
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class MinMaxDivisionTest extends FunSuite {
 
   import MinMaxDivision._

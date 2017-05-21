@@ -1,10 +1,7 @@
 package lessons.lesson13
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class FibFrogTest extends FunSuite {
 
   import FibFrog._

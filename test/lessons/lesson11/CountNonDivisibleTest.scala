@@ -1,10 +1,7 @@
 package lessons.lesson11
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class CountNonDivisibleTest extends FunSuite {
 
   import CountNonDivisible._

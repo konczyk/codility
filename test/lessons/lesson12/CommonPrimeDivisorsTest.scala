@@ -1,10 +1,7 @@
 package lessons.lesson12
 
-import org.junit.runner.RunWith
 import org.scalatest.FunSuite
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class CommonPrimeDivisorsTest extends FunSuite {
 
   import CommonPrimeDivisors._
